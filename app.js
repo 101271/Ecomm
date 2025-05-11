@@ -7,7 +7,6 @@ const app = express();
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const wrapAsync = require("./utility/wrapAsync");
 const path = require("path");
 
 // connect to mongoose
@@ -18,6 +17,9 @@ main()
 async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/ecomm");
 }
+
+const userRoute = require("./router/user.js");
+const sellerRoute = require("./router/seller.js");
 
 app.use(express.json());
 app.use(methodOverride("_method"));
@@ -46,92 +48,10 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 
+app.use(userRoute);
+app.use(sellerRoute);
 
-app.get("/", async (req, res) => {
-  let data = await product.find({});
-  res.render("./pages/user/home.ejs", { data });
-});
 
-app.get("/lists/:id",async (req, res,next) => {
-  const productData = await product.findById(req.params.id);
-  if(!productData){
-    next(new ExpressError(404,"product not Found"))
-  }
-  else{
-    res.render("./pages/user/show.ejs", { productData });
-  }
-});
-
-app.get("/seller/home", async (req, res) => {
-  let data = await product.find({});
-  res.render("./pages/seller/home.ejs", { data });
-});
-
-app.get("/add_product", (req, res) => {
-  res.render("./pages/seller/add");
-});
-
-app.post(
-  "/add_product",
-  wrapAsync(async (req, res, next) => {
-    let data = new product({
-      name: req.body.name,
-      image: {
-        filename: req.body.filename,
-        url: req.body.url,
-      },
-      owner: req.body.owner,
-      description: req.body.description,
-      add_product_catagory: req.body.add_product_catagory,
-      price: req.body.price,
-      rating: req.body.rating,
-    });
-    await data.save();
-    res.redirect("/seller/home");
-  })
-);
-
-app.get("/filter/:id", async (req, res) => {
-  const data = await product.find({ add_product_catagory: req.params.id });
-  if(data.length==0){
-    // next(new ExpressError(500,"Not Product Found"))
-    let message = "not Product found";
-    res.render("./pages/user/home.ejs", { data, message });
-  }
-  else{
-    res.render("./pages/user/home.ejs", { data });
-
-  }
-});
-
-app.get("/seller/:id", async (req, res) => {
-  const productData = await product.findById(req.params.id);
-  res.render("./pages/seller/show.ejs", { productData });
-});
-
-app.get("/seller/edit/:id", async (req, res) => {
-  const data = await product.findById(req.params.id);
-  res.render("./pages/seller/edit.ejs", { data });
-});
-
-app.put("/seller/edit/:id", async (req, res) => {
-  await product.findByIdAndUpdate(req.params.id, {
-    name: req.body.name,
-    image: {
-      filename: req.body.filename,
-      url: req.body.url,
-    },
-    description: req.body.description,
-    add_product_catagory: req.body.add_product_catagory,
-    price: req.body.price,
-  });
-  res.redirect("/seller/home");
-});
-
-app.delete("/seller/delete/:id", async (req, res) => {
-  await product.findByIdAndDelete(req.params.id);
-  res.redirect("/seller/home");
-});
 
 app.get("/signup", async (req, res) => {
   res.render("./pages/signup.ejs");
