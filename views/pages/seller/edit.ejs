@@ -1,0 +1,52 @@
+<% layout('./layout/boilerplate') -%>
+
+ <div class="main_container">
+   <div class="Add_product_container">
+    <h1>Welcome to the Product Edit Page</h1>
+    <div class="alert_add_product">
+        <p>1. Fill out the field you need to edit then submit.</p>
+        <p>2. Note: You can either provide a filename or a URL for the product image.</p>
+        <p>3. Make sure to fill in all required fields.</p>
+    </div>
+    <hr>
+    <form action="/seller/edit/<%= data._id %>/?_method=PUT" method="POST">
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" id="name" name="name" value="<%= data.name %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="url">Image URL</label>
+        <input type="url" id="url" value="<%= data.image.url %>" name="url" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" value="<%= data.description %>" rows="4" required><%= data.description %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="add_product_catagory">Product Catagory</label>
+        <select name="add_product_catagory"  id="add_product_catagory">
+          <option value="kitchen">Kitchen</option>
+          <option value="medicines">Medicines</option>
+          <option value="clothes">Clothes</option>
+          <option value="gym">GYM</option>
+          <option value="mobiles">Mobiles</option>
+          <option value="sounds">Sounds</option>
+          <option value="jewelleries">Jewelleries</option>
+          <option value="shoes">Shoes</option>
+          <option value="watches">Watches</option>
+          <option value="games">Games</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price ($)</label>
+        <input type="number" id="price" value="<%= data.price %>" name="price" step="0.01" required />
+      </div>
+
+        <button type="submit">Submit Edit</button>
+    </form>
+  </div>
+ </div>

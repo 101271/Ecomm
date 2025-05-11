@@ -1,0 +1,95 @@
+<% layout('./layout/boilerplate') -%>
+<div class="main_container">
+    <div class="filters">
+      <div class="filter">
+        <a href="/filter/kitchen">
+          <i class="fa-solid fa-kitchen-set"></i>
+          <p>Kitchen</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/Medicines">
+          <i class="fa-solid fa-pills"></i>
+          <p>Medicines</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/Clothes">
+        <i class="fa-solid fa-shirt"></i>
+          <p>Clothes</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/gym">
+        <i class="fa-solid fa-dumbbell"></i>
+          <p>GYM</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/mobiles">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+          <p>Mobiles</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/sounds">
+        <i class="fa-solid fa-headphones"></i>
+          <p>Sounds</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/jewelleries">
+        <i class="fa-solid fa-gem"></i>
+          <p>Jewelleries</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/shoes">
+        <i class="fa-solid fa-shoe-prints"></i>
+          <p>Shoes</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/watches">
+        <i class="fa-solid fa-clock"></i>
+          <p>Watches</p>
+        </a>
+      </div>
+      <div class="filter">
+        <a href="/filter/games">
+        <i class="fa-solid fa-gamepad"></i>
+          <p>Games</p>
+        </a>
+      </div>
+    </div>
+    <div class="lists">
+
+      <% if (data.length === 0) { %>
+        <div class="not_found_container">
+          <h1 class="not_found">Product Not Found</h1>
+      </div>
+      <% } %>
+
+      <% data.forEach((product)=>{ %>
+
+        <a href="/lists/<%=product._id%>" class="list_link">
+          <div class="list">
+            <div class="list_img">
+              <img src="<%- product.image.url %>"
+                alt="" />
+            </div>
+            <div class="list_text">
+              <h3 class="list_name"><%- product.name %></h3>
+              <p class="list_price">M.R.P - <span class="price"><%- product.price %>$ </span></p>
+              <div class="list_rating">
+                <p>Ratings :-</p>
+                <img src="/starts2.png" alt="">
+              </div>
+              <p class="list_Charges">Shipping -<span class="Delivary">Free Delivary</span></p>
+            </div>
+          </div>
+        </a>
+
+      <% }) %>
+    </div>
+</div>

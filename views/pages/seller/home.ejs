@@ -1,0 +1,48 @@
+<% layout('./layout/boilerplate') -%>
+<div class="main_container">
+    <div class="seller_filter">
+        <form action="/add_product" method="GET">
+          <button class="buy_now add_new_seller button-15">Add New Product</button>
+        </form>
+        <div>
+            <label class="Delivary_show_card_2 seller_option_label" for="Delivary_show_card_2">Product Lists:- </label>
+            <select name="Delivary_show_card_2" class="show_slide_1" id="cars">
+              <option value="volvo" class="show_slide_1">All Products</option>
+              <option value="saab" class="show_slide_1">Gamings</option>
+              <option value="mercedes" class="show_slide_1">Clothes</option>
+              <option value="audi" class="show_slide_1">Kitchen</option>
+            </select>
+            <button class="button-15 seller_search_btn"> <i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </div>  
+    </div>
+    <div class="lists">
+
+      <% if (data.length === 0) { %>
+        <div class="not_found_container">
+          <h1 class="not_found">Product Not Found</h1>
+      </div>
+      <% } %>
+
+      <% data.forEach((product)=>{ %>
+
+        <a href="/seller/<%= product._id %>" class="list_link">
+          <div class="list">
+            <div class="list_img">
+              <img src="<%- product.image.url %>"
+                alt="" />
+            </div>
+            <div class="list_text">
+              <h3 class="list_name"><%- product.name %></h3>
+              <p class="list_price">M.R.P - <span class="price"><%- product.price %>$ </span></p>
+              <div class="list_rating">
+                <p>Ratings :-</p>
+                <img src="/starts2.png" alt="">
+              </div>
+              <p class="list_Charges">Shipping -<span class="Delivary">Free Delivary</span></p>
+            </div>
+          </div>
+        </a>
+
+      <% }) %>
+    </div>
+</div>

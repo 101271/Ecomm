@@ -1,0 +1,35 @@
+<% layout('./layout/login_signup') -%>
+
+<div class="login-box">
+  <h2>Welcome</h2>
+  <p>Please log in to continue</p>
+  <form class="needs-validation" novalidate>
+    <input
+      type="text"
+      id="validationTooltip01"
+      class="form-control"
+      placeholder="Username"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Please Enter the Username!</div>
+    <div class="password-field">
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+      <span class="toggle-password " onclick="togglePassword()">👁️</span>
+      <div class="valid-feedback">Looks good!</div>
+      <div class="invalid-feedback">Please Enter the password!</div>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  <div class="links">
+    <a href="#">Forgot password?</a>
+    <a href="/signup">Sign up</a>
+    <a href="#">Seller Login</a>
+  </div>
+</div>

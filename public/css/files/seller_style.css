@@ -1,0 +1,51 @@
+.seller_filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 50px;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.seller_filter div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_new_seller{
+    font-size: 1.2rem;
+}
+
+.seller_option_label{
+    font-size: 1.4rem;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.seller_search_btn{
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+
+    & i{
+        margin-right: 7px;
+        font-size: 1.1rem;
+    }
+}
+
+.delete{
+    background-image: linear-gradient(rgb(226, 63, 63), rgb(180, 4, 4));
+}
+
+.delete:hover{
+    background-image: linear-gradient(rgb(236, 84, 84), rgb(218, 3, 3));
+}
