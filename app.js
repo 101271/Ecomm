@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const wrapAsync = require("./utility/wrapAsync");
+const path = require("path");
 
 // connect to mongoose
 main()
@@ -21,12 +22,12 @@ async function main() {
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public/css"));
-app.use(express.static("public/js"));
-app.use(express.static("public/images"));
+app.use(express.static(path.join(__dirname, 'public/css')));
+app.use(express.static(path.join(__dirname, 'public/js')));
+app.use(express.static(path.join(__dirname, 'public/images')));
 
 app.set("view engine", "ejs");
-app.set("views", "./views");
+app.set('views', path.join(__dirname, 'views'));
 app.engine("ejs", ejsMate);
 app.use(express.urlencoded({ extended: true }));
 
@@ -51,9 +52,14 @@ app.get("/", async (req, res) => {
   res.render("./pages/user/home.ejs", { data });
 });
 
-app.get("/lists/:id", async (req, res) => {
+app.get("/lists/:id",async (req, res,next) => {
   const productData = await product.findById(req.params.id);
-  res.render("./pages/user/show.ejs", { productData });
+  if(!productData){
+    next(new ExpressError(404,"product not Found"))
+  }
+  else{
+    res.render("./pages/user/show.ejs", { productData });
+  }
 });
 
 app.get("/seller/home", async (req, res) => {
@@ -87,7 +93,15 @@ app.post(
 
 app.get("/filter/:id", async (req, res) => {
   const data = await product.find({ add_product_catagory: req.params.id });
-  res.render("./pages/user/home.ejs", { data });
+  if(data.length==0){
+    // next(new ExpressError(500,"Not Product Found"))
+    let message = "not Product found";
+    res.render("./pages/user/home.ejs", { data, message });
+  }
+  else{
+    res.render("./pages/user/home.ejs", { data });
+
+  }
 });
 
 app.get("/seller/:id", async (req, res) => {
@@ -157,8 +171,7 @@ app.all('/*splat',(req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Some error Occures" } = err;
-  res.status(statusCode).send(message);
-  // res.sendStatus(statusCode);
+  res.render("./pages/error.ejs",{message});
 });
 
 

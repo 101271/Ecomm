@@ -37,3 +37,13 @@ function pass_check() {
     }, false)
   })
 })()
+
+function dismissNotification() {
+        const note = document.getElementById("guacamole-notification");
+        note.style.display = "none";
+      }
+      document.querySelector(".noti").addEventListener("click", () => {
+        let a = document.querySelector(".notification");
+        console.dir(a);
+        a.style.top = "20px";
+      });

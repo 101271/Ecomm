@@ -1,0 +1,12 @@
+<% layout("./layout/boilerplate") %>
+<% if(message && message.length){ %>
+<div class="notification" id="guacamole-notification">
+  <div>
+    <strong><%= message %></strong>
+  </div>
+  <i
+    class="fa-solid fa-circle-xmark close_btn"
+    onclick="dismissNotification()"
+  ></i>
+</div>
+<% } %>
