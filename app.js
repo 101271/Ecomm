@@ -20,6 +20,7 @@ async function main() {
 
 const userRoute = require("./router/user.js");
 const sellerRoute = require("./router/seller.js");
+const Login_signup_Route = require("./router/login_signup.js");
 
 app.use(express.json());
 app.use(methodOverride("_method"));
@@ -50,36 +51,9 @@ app.use(session(sessionConfig));
 
 app.use(userRoute);
 app.use(sellerRoute);
+app.use(Login_signup_Route);
 
 
-
-app.get("/signup", async (req, res) => {
-  res.render("./pages/signup.ejs");
-});
-
-app.post("/signup", async (req, res) => {
-  const { username, email, password, confirm_password } = req.body;
-  console.log(username, email, password, confirm_password);
-  if (password !== confirm_password) {
-    console.log("password not matched");
-    return res.redirect("/signup");
-  } else {
-    const data = new user({
-      username,
-      email,
-      password,
-    });
-    await data
-      .save()
-      .then((res) => console.log("data saved successfully"))
-      .catch((err) => console.log(err));
-    res.redirect("/login");
-  }
-});
-
-app.get("/login", async (req, res) => {
-  res.render("./pages/login.ejs");
-});
 
 app.get("/noti", async (req, res) => {
   res.render("./pages/notifiction.ejs");
