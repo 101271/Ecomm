@@ -1,10 +1,10 @@
-const express = require("express")
-const router = express.Router({mergeParams : true});
-const product = require('../model/product.js')
+const express = require("express");
+const router = express.Router({ mergeParams: true });
+const product = require("../model/product.js");
 const wrapAsync = require("../utility/wrapAsync");
 
 router.get("/seller/home", async (req, res) => {
-let data = await product.find({});
+  let data = await product.find({});
   res.render("./pages/seller/home.ejs", { data });
 });
 
@@ -27,21 +27,39 @@ router.post(
       price: req.body.price,
       rating: req.body.rating,
     });
-    await data.save();
-    res.redirect("/seller/home");
+    await data
+      .save()
+      .then(() => {
+        req.flash("success", "Product Added Successfull");
+        res.redirect("/seller/home");
+      })
+      .catch((err) => {
+        next(err);
+      });
   })
 );
 
-
-
-router.get("/seller/:id", async (req, res) => {
-  const productData = await product.findById(req.params.id);
-  res.render("./pages/seller/show.ejs", { productData });
-});
+router.get(
+  "/seller/:id",
+  wrapAsync(async (req, res,next) => {
+       const productData = await product.findById(req.params.id);
+    if (!productData) {
+      req.flash("error", "Product Not Found");
+      res.redirect("/seller/home");
+    } else {
+      res.render("./pages/seller/show.ejs", { productData });
+    }
+  })
+);
 
 router.get("/seller/edit/:id", async (req, res) => {
   const data = await product.findById(req.params.id);
-  res.render("./pages/seller/edit.ejs", { data });
+  if (!data) {
+    req.flash("error", "Product Not found");
+    res.redirect("/");
+  }else{
+    res.render("./pages/seller/edit.ejs", { data });
+  }
 });
 
 router.put("/seller/edit/:id", async (req, res) => {
@@ -55,12 +73,14 @@ router.put("/seller/edit/:id", async (req, res) => {
     add_product_catagory: req.body.add_product_catagory,
     price: req.body.price,
   });
+  req.flash("success","Product Update Successfull")
   res.redirect("/seller/home");
 });
 
 router.delete("/seller/delete/:id", async (req, res) => {
   await product.findByIdAndDelete(req.params.id);
+  req.flash("success", "Product Delete Successfully");
   res.redirect("/seller/home");
 });
 
-module.exports = router
+module.exports = router;

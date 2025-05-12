@@ -10,14 +10,6 @@ function togglePassword() {
   }
 }
 
-function pass_check() {
-  let pass_1 = document.querySelector(".password_1");
-  let pass_2 = document.querySelector(".password_2");
-  if (pass_1.value !== pass_2.value) {
-    alert("pass dint same");
-  }
-}
-
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'

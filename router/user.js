@@ -1,21 +1,23 @@
 const express = require("express")
 const router = express.Router({mergeParams : true});
-const product = require('../model/product.js')
+const product = require('../model/product.js'); 
+const wrapAsync = require("../utility/wrapAsync.js");
 
 router.get("/", async (req, res) => {
   let data = await product.find({});
   res.render("./pages/user/home.ejs", { data });
 });
 
-router.get("/lists/:id",async (req, res,next) => {
+router.get("/lists/:id",wrapAsync(async (req, res) => {
   const productData = await product.findById(req.params.id);
   if(!productData){
-    next(new ExpressError(404,"product not Found"))
+    req.flash("error","Product Not found");
+    res.redirect("/");
   }
   else{
     res.render("./pages/user/show.ejs", { productData });
   }
-});
+}));
 
 
 
