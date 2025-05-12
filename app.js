@@ -48,6 +48,11 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 
+app.use((req,res,next)=>{
+  res.locals.message = "hello";
+  res.locals.error = "";
+  next();
+})
 
 app.use(userRoute);
 app.use(sellerRoute);
