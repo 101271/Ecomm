@@ -4,7 +4,9 @@ const product = require('../model/product.js')
 
 router.get("/", async (req, res) => {
   let data = await product.find({});
-  res.render("./pages/user/home.ejs", { data });
+  let message = "Account login Succesfully"
+  let error = ""
+  res.render("./pages/user/home.ejs", { data , message, error });
 });
 
 router.get("/lists/:id",async (req, res,next) => {

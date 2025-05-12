@@ -541,10 +541,8 @@ button:hover {
 /* notification */
 
 .notification {
-        /* background-color: #63cfa4; */
-        background-color: rgb(228, 102, 102);
-        /* color: #0f5132; */
-        color: rgb(110, 17, 17);
+        background-color: #63cfa4;
+        color: #0f5132;
         padding: 1.5rem 2rem 1.5rem 2rem;
         border-radius: 5px;
         display: flex;
@@ -572,7 +570,7 @@ button:hover {
         background: none;
         border: none;
         font-size: 1.5rem;
-        /* color: #0f5132; */
+        color: #0f5132;
         cursor: pointer;
         /* margin-left: 20px; */
         width: 35px;
@@ -584,12 +582,27 @@ button:hover {
         align-items: center;
       }
       .close_btn {
-        /* color: #179c5e; */
-        color: rgb(182, 19, 19);
+        color: #179c5e;
         transition: 0.5s;
         margin-left: 10px;
       }
       .close_btn:hover {
-        /* color: #0f5132; */
-        color: rgb(110, 17, 17);
+        color: #0f5132;
       }
+
+      .notification_error{
+        background-color: rgb(228, 102, 102);
+        color: rgb(110, 17, 17);
+
+      }
+
+        .notification_error_btn{
+        color: rgb(182, 19, 19);
+        
+      }
+       .notification_error_btn:hover{
+        
+        color: rgb(110, 17, 17);
+        
+      }
+
