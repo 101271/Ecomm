@@ -1,7 +1,6 @@
-const express = require("express")
-const router = express.Router({mergeParams : true});
-const product = require('../model/product.js')
-
+const express = require("express");
+const router = express.Router({ mergeParams: true });
+const product = require("../model/product.js");
 
 router.get("/signup", async (req, res) => {
   res.render("./pages/signup.ejs");
@@ -28,8 +27,8 @@ router.post("/signup", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
+  req.flash("success","Login SuccessFully");
   res.render("./pages/login.ejs");
 });
 
 module.exports = router;
-

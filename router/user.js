@@ -4,9 +4,6 @@ const product = require('../model/product.js')
 
 router.get("/", async (req, res) => {
   let data = await product.find({});
-  // let message = "Account login Succesfully"
-  let error = ""
-  console.log(res.locals.message)
   res.render("./pages/user/home.ejs", { data });
 });
 

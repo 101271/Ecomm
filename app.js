@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const path = require("path");
+const flash = require('connect-flash');
 
 // connect to mongoose
 main()
@@ -47,10 +48,11 @@ const sessionConfig = {
 };
 
 app.use(session(sessionConfig));
+app.use(flash());
 
 app.use((req,res,next)=>{
-  res.locals.message = "hello";
-  res.locals.error = "";
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 })
 
@@ -58,7 +60,10 @@ app.use(userRoute);
 app.use(sellerRoute);
 app.use(Login_signup_Route);
 
-
+app.get("/working",(req,res)=>{
+  req.flash("error","Page is Under Construction");
+  res.redirect("/");
+})
 
 app.get("/noti", async (req, res) => {
   res.render("./pages/notifiction.ejs");
