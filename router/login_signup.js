@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const user = require("../model/user_account.js");
+const { validation_user_account } = require("../middleware.js");
 
 router.get("/signup", async (req, res) => {
   res.render("./pages/signup.ejs");
 });
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", validation_user_account, async (req, res) => {
   const { username, email, password, confirm_password } = req.body;
   if (password !== confirm_password) {
     let error = "Password Didn't Match";

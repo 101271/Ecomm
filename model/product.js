@@ -20,10 +20,6 @@ const productSchema = new mongoose.Schema({
           : v,
     },
   },
-  owner: {
-    type: String,
-    default: "owner",
-  },
 
   description: {
     type: String,

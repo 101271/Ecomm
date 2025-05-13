@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const product = require("../model/product.js");
 const wrapAsync = require("../utility/wrapAsync");
+const { validateProduct } = require("../middleware.js");
 
 router.get("/seller/home", async (req, res) => {
   let data = await product.find({});
@@ -14,6 +15,7 @@ router.get("/add_product", (req, res) => {
 
 router.post(
   "/add_product",
+  validateProduct,
   wrapAsync(async (req, res, next) => {
     let data = new product({
       name: req.body.name,
@@ -62,7 +64,7 @@ router.get("/seller/edit/:id", async (req, res) => {
   }
 });
 
-router.put("/seller/edit/:id", async (req, res) => {
+router.put("/seller/edit/:id", validateProduct, async (req, res) => {
   await product.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     image: {

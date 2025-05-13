@@ -83,7 +83,7 @@ app.all("/*splat", (req, res, next) => {
 // Custom Error Handle
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Some error Occures" } = err;
-  console.log(message.split(":")[0]);
+  // console.log(message.split(":")[0]);
   if (message.split(":")[0] === "product validation failed") {
     message = message.split(":")[2];
   }
