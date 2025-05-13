@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: true,
+    minlength: [5, "Product Name is Too Short"],
+    maxlength: [40, "Product Name is Too Long"],
   },
   image: {
     filename: {
@@ -24,15 +27,33 @@ const productSchema = new mongoose.Schema({
 
   description: {
     type: String,
+    required: true,
+    minlength: [10, "Product description is Too Short"],
+    maxlength: [500, "Product description is Too Long"],
   },
 
   add_product_catagory: {
     type: String,
+    required: true,
+    enum: [
+      "kitchen",
+      "medicines",
+      "clothes",
+      "gym",
+      "mobiles",
+      "sounds",
+      "jewelleries",
+      "shoes",
+      "watches",
+      "games",
+    ],
   },
 
   price: {
     type: Number,
     required: true,
+    min: [1, "Product price is Too low"],
+    max: [50000, "Product price is Too high"],
   },
 });
 

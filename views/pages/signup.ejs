@@ -4,28 +4,47 @@
   <h2>Welcome To M.H Avenue</h2>
   <p>Please Sign up to continue</p>
   <form action="/signup" class="needs-validation" method="POST" novalidate>
+    <div>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Please Enter Username!"
+        minlength="6"
+        maxlength="25"
+        required
+      />
+      <div class="valid-feedback">Looks good!</div>
+      <div class="invalid-feedback">Please Enter the Valid Username!</div>
+    </div>
+    <div>
+      <input
+        type="email"
+        name="email"
+        placeholder="Please Enter Your Email!"
+        maxlength="100"
+        minlength="10"
+        required
+      />
+      <div class="invalid-feedback">Please Enter Valid Email!</div>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
 
-    <input type="text" name="username" class="form-control" placeholder="Username" required />
-    <div class="valid-feedback">Looks good!</div>
-    <div class="invalid-feedback">Please Enter the Username!</div>
-
-    <input type="text" name="email" placeholder="Email" required />
-    <div class="valid-feedback">Looks good!</div>
-    <div class="invalid-feedback">Please Enter Your Email!</div>
-
-    <div class="password-field ">
+    <div class="password-field">
       <input
         type="password"
         name="password"
         id="password"
         class="password_1 form-control"
-        placeholder="Password"
+        placeholder="Please Enter Your password!"
         required
         class="form-control"
+        maxlength="35"
+        minlength="8"
       />
       <span class="toggle-password" onclick="togglePassword()">👁️</span>
       <div class="valid-feedback">Looks good!</div>
-      <div class="invalid-feedback">Please Enter the Username!</div>
+      <div class="invalid-feedback">Please Enter Valid password!</div>
     </div>
     <div class="password-field">
       <input
@@ -33,12 +52,14 @@
         name="confirm_password"
         id="password"
         class="password_2"
-        placeholder="Confirm Password"
+        placeholder="Please Enter Your Password Again!"
         required
+        maxlength="35"
+        minlength="8"
       />
       <span class="toggle-password" onclick="togglePassword()"></span>
       <div class="valid-feedback">Looks good!</div>
-      <div class="invalid-feedback">Please Enter the Username!</div>
+      <div class="invalid-feedback">Please Enter Valid Password!</div>
     </div>
     <button type="submit">Login</button>
   </form>

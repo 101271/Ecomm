@@ -12,7 +12,7 @@
     <form id="productForm" action="/add_product" method="POST">
       <div class="form-group">
         <label for="name">Product Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter Product Name" required />
+        <input type="text" minlength="5" maxlength="40" id="name" name="name" placeholder="Enter Product Name" required />
       </div>
 
       <div class="form-group">
@@ -22,7 +22,7 @@
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea id="description" name="description" placeholder="Enter Product Deatils Here" rows="4" required></textarea>
+        <textarea id="description" minlength="10" name="description" placeholder="Enter Product Deatils Here" rows="4" maxlength="500" required></textarea>
       </div>
 
       <div class="form-group">
@@ -43,7 +43,7 @@
 
       <div class="form-group">
         <label for="price">Price ($)</label>
-        <input id="price" placeholder="Enter Product Price" name="price" step="0.01" required />
+        <input id="price" type="number" min="1" max="50000" placeholder="Enter Product Price" name="price" step="0.01" required />
       </div>
 
       <button type="submit">Submit Product</button>

@@ -8,22 +8,26 @@
       type="text"
       id="validationTooltip01"
       class="form-control"
-      placeholder="Username"
+      placeholder="Enter Your Username!"
       required
+      minlength="6"
+      maxlength="25"
     />
     <div class="valid-feedback">Looks good!</div>
-    <div class="invalid-feedback">Please Enter the Username!</div>
+    <div class="invalid-feedback">Please Enter Valid Username!</div>
     <div class="password-field">
       <input
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="Enter Your password!"
         required
+        minlength="8"
+        maxlength="25"
       />
       <span class="toggle-password " onclick="togglePassword()">👁️</span>
       <div class="valid-feedback">Looks good!</div>
-      <div class="invalid-feedback">Please Enter the password!</div>
+      <div class="invalid-feedback">Please Enter Valid password!</div>
     </div>
     <button type="submit">Login</button>
   </form>
