@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
-const user = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -13,13 +14,15 @@ const user = new mongoose.Schema({
     minlength: [10, "Email is Too Short"],
     maxlength: [100, "Email is Too long"],
   },
-  password: {
-    type: String,
-    required: true,
-    minlength: [8, "Password is Too Short"],
-    maxlength: [35, "Password is Too long"],
-  },
+  // password: {
+  //   type: String,
+  //   required: true,
+  //   minlength: [8, "Password is Too Short"],
+  //   maxlength: [35, "Password is Too long"],
+  // },
 });
 
-const user_account = new mongoose.model("user", user);
+userSchema.plugin(passportLocalMongoose);
+
+const user_account = new mongoose.model("user", userSchema);
 module.exports = user_account;

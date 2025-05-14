@@ -3,7 +3,7 @@
 <div class="login-box">
   <h2>Welcome To M.H Avenue</h2>
   <p>Please log in to continue</p>
-  <form class="needs-validation" action="/login_to_home" method="GET" novalidate>
+  <form class="needs-validation" action="/login_to_home" method="POST" novalidate>
     <input
       type="text"
       id="validationTooltip01"
@@ -12,6 +12,7 @@
       required
       minlength="6"
       maxlength="25"
+      name="username"
     />
     <div class="valid-feedback">Looks good!</div>
     <div class="invalid-feedback">Please Enter Valid Username!</div>
@@ -24,6 +25,7 @@
         required
         minlength="8"
         maxlength="25"
+        name="password"
       />
       <span class="toggle-password " onclick="togglePassword()">👁️</span>
       <div class="valid-feedback">Looks good!</div>

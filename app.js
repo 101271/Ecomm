@@ -8,6 +8,9 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const path = require("path");
 const flash = require("connect-flash");
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require("./model/user_account");
 
 // connect to mongoose
 main()
@@ -22,6 +25,7 @@ async function main() {
 const userRoute = require("./router/user.js");
 const sellerRoute = require("./router/seller.js");
 const Login_signup_Route = require("./router/login_signup.js");
+const wrapAsync = require("./utility/wrapAsync.js");
 
 // Setting middlewares
 app.use(express.json());
@@ -59,10 +63,32 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // use Routes
 app.use(userRoute);
 app.use(sellerRoute);
 app.use(Login_signup_Route);
+
+// app.get('/test',wrapAsync(async(req,res)=>{
+//   try{
+//     let password = "97866966887";
+//   let user = new User({
+//     email : "Maaz@1234567890",
+//     username : "Maaz1234567890"
+//   });
+//   let register = await User.register(user,password);
+//   res.send(register);
+// } catch(e){
+//   req.flash("error", e.message);
+//   res.redirect('/');
+// }
+// }))
 
 // under construction api handler
 app.get("/working", (req, res) => {
