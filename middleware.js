@@ -29,8 +29,17 @@ module.exports.validation_user_account = (req, res, next) => {
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
+    req.session.returnTo = req.originalUrl;
     req.flash("error", "You need to be logged in to do that");
     return res.redirect("/login");
+  }
+  next();
+}
+
+
+module.exports.saveReturnTo = (req, res, next) => {
+  if (req.session.returnTo) {
+    res.locals.returnTo = req.session.returnTo;
   }
   next();
 }

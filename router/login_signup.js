@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const user = require("../model/user_account.js");
-const { validation_user_account } = require("../middleware.js");
+const { validation_user_account, saveReturnTo } = require("../middleware.js");
 const passport = require("passport");
 
 router.get("/signup", async (req, res) => {
@@ -45,13 +45,15 @@ router.get("/login", async (req, res) => {
 
 router.post(
   "/login_to_home",
+  saveReturnTo,
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
   }),
   async (req, res) => {
     req.flash("success", "Login Account Successfully");
-    res.redirect("/");
+    let redirectUrl =  res.locals.returnTo || "/";
+    res.redirect(redirectUrl);
   }
 );
 

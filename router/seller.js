@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const product = require("../model/product.js");
 const wrapAsync = require("../utility/wrapAsync");
-const { validateProduct, isLoggedIn } = require("../middleware.js");
+const { validateProduct, isLoggedIn, saveReturnTo } = require("../middleware.js");
 
 router.get("/seller/home", async (req, res) => {
   let data = await product.find({});
@@ -55,7 +55,7 @@ router.get(
   })
 );
 
-router.get("/seller/edit/:id",  async (req, res) => {
+router.get("/seller/edit/:id", saveReturnTo, isLoggedIn,  async (req, res) => {
   const data = await product.findById(req.params.id);
   if (!data) {
     req.flash("error", "Product Not found");
