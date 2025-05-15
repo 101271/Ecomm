@@ -22,9 +22,16 @@ router.post("/signup", validation_user_account, async (req, res) => {
         username,
         email,
       });
-      await user.register(data, password);
-      req.flash("success", "Account Signup Successfully");
-      res.redirect("/login");
+      let registerUser = await user.register(data, password);
+      req.login(registerUser, (err) => {
+        if (err) {
+          req.flash("error", err.message);
+          return res.redirect("/signup");
+        } else {
+          req.flash("success", "Account Created Successfully");
+          res.redirect("/");
+        }
+      });
     }
   } catch (e) {
     req.flash("error", e.message);

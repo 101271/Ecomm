@@ -57,15 +57,20 @@ app.use(session(sessionConfig));
 app.use(flash());
 
 // Setting local varibale in response
-app.use((req, res, next) => {
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  next();
-});
+
 
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+
+// correct the order code 
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currentuser = req.user;
+  next();
+});
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -89,6 +94,18 @@ app.use(Login_signup_Route);
 //   res.redirect('/');
 // }
 // }))
+
+app.get('/logout',(req,res)=>{
+  req.logout((err)=>{
+    if(err){
+      next(err);
+    }
+    else{
+      req.flash("success","User Logout Successfully")
+      res.redirect('/');
+    }
+  })
+})
 
 // under construction api handler
 app.get("/working", (req, res) => {

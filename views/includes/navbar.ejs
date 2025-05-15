@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="container">
-    <a href="/" style="text-decoration: none;">
+    <a href="/" style="text-decoration: none">
       <div class="logo">M.H. Avenue</div>
     </a>
 
@@ -17,8 +17,13 @@
             <li><a href="/working">Marketing</a></li>
           </ul>
         </li>
+        <% if(currentuser){ %>
+        <li><a href="/logout">Logout</a></li>
+        <% } %> 
+        <% if(!currentuser){ %>
         <li><a href="/signup">Sign Up</a></li>
         <li class="login_margin"><a href="/login">Login</a></li>
+        <% } %>
       </ul>
     </b>
 

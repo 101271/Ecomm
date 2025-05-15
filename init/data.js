@@ -236,7 +236,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHViYWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 5000,
-      add_product_catagory: "Clothes",
+      add_product_catagory: "clothes",
       country: "United Arab Emirates",
     },
     {
@@ -248,7 +248,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       },
       price: 1100,
-      add_product_catagory: "Clothes",
+      add_product_catagory: "clothes",
       country: "United States",
     },
     {
@@ -260,7 +260,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dmlsbGF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 2500,
-      add_product_catagory: "Clothes",
+      add_product_catagory: "clothes",
       country: "Greece",
     },
     {
@@ -272,7 +272,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 750,
-      add_product_catagory: "Clothes",
+      add_product_catagory: "clothes",
       country: "Costa Rica",
     },
     {
@@ -284,7 +284,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1587381420270-3e1a5b9e6904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       },
       price: 1600,
-      add_product_catagory: "Medicines",
+      add_product_catagory: "medicines",
       country: "United States",
     },
     {
@@ -296,7 +296,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
       },
       price: 2000,
-      add_product_catagory: "Medicines",
+      add_product_catagory: "medicines",
       country: "Japan",
     },
     {
@@ -308,7 +308,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 1200,
-      add_product_catagory: "Medicines",
+      add_product_catagory: "medicines",
       country: "United States",
     },
     {
@@ -320,7 +320,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFrZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 6000,
-      add_product_catagory: "Medicines",
+      add_product_catagory: "medicines",
       country: "Maldives",
     },
     {
@@ -332,7 +332,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGxha2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 4000,
-      add_product_catagory: "Medicines",
+      add_product_catagory: "medicines",
       country: "United States",
     },
     {
@@ -344,7 +344,7 @@ const sampleListings = [
         url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
       },
       price: 1800,
-      add_product_catagory: "Medicines",
+      add_product_catagory: "medicines",
       country: "Costa Rica",
     },
   ];
