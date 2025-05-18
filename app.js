@@ -23,9 +23,11 @@ async function main() {
 }
 
 // require Routes
+const Login = require("./router/login.js");
+const signup= require("./router/signup.js");
 const userRoute = require("./router/user.js");
 const sellerRoute = require("./router/seller.js");
-const Login_signup_Route = require("./router/login_signup.js");
+
 const wrapAsync = require("./utility/wrapAsync.js");
 
 // Setting middlewares
@@ -98,7 +100,8 @@ passport.deserializeUser(async (obj, done) => {
 // passport.deserializeUser(Seller.deserializeUser());
 
 // use Routes
-app.use(Login_signup_Route);
+app.use(signup);
+app.use(Login);
 app.use(userRoute);
 app.use(sellerRoute);
 
