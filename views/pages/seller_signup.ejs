@@ -2,14 +2,15 @@
 
 <div class="login-box">
   <h2>Welcome To M.H Avenue</h2>
-  <p>Please signup to User's Account</p>
-  <form action="/signup" class="needs-validation" method="POST" novalidate>
+   <p>Please Signup to Seller's Account</p>
+
+  <form action="/signup/seller" class="needs-validation" method="POST" novalidate>
     <div>
       <input
         type="text"
         name="username"
         class="form-control"
-        placeholder="Please Enter Username!"
+        placeholder="Please Enter Seller's Username!"
         minlength="6"
         maxlength="25"
         required
@@ -21,7 +22,7 @@
       <input
         type="email"
         name="email"
-        placeholder="Please Enter Your Email!"
+        placeholder="Please Enter Seller's Email!"
         maxlength="100"
         minlength="10"
         required
@@ -68,6 +69,6 @@
   </form>
   <div class="links">
     <a href="/login">Login</a>
-    <a href="/seller/signup">Seller signup</a>
+    <a href="/signup">User signup</a>
   </div>
 </div>

@@ -2,8 +2,14 @@
 
 <div class="login-box">
   <h2>Welcome To M.H Avenue</h2>
-  <p>Please log in to User's Account</p>
-  <form class="needs-validation" action="/login_user" method="POST" novalidate>
+  <p>Please log in to Seller's Account</p>
+
+  <form
+    class="needs-validation"
+    action="/login_seller"
+    method="POST"
+    novalidate
+  >
     <input
       type="text"
       id="validationTooltip01"
@@ -27,7 +33,7 @@
         maxlength="25"
         name="password"
       />
-      <span class="toggle-password " onclick="togglePassword()">👁️</span>
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
       <div class="valid-feedback">Looks good!</div>
       <div class="invalid-feedback">Please Enter Valid password!</div>
     </div>
@@ -36,6 +42,6 @@
   <div class="links">
     <a href="#">Forgot password?</a>
     <a href="/signup">Sign up</a>
-    <a href="/seller/login">Seller Login</a>
+    <a href="/login">Seller Login</a>
   </div>
 </div>

@@ -11,6 +11,7 @@ const flash = require("connect-flash");
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require("./model/user_account");
+const Seller = require("./model/seller_account");
 
 // connect to mongoose
 main()
@@ -61,7 +62,8 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use('user',new LocalStrategy(User.authenticate()));
+passport.use('seller',new LocalStrategy(Seller.authenticate()));
 
 // correct the order code 
 
@@ -74,11 +76,13 @@ app.use((req, res, next) => {
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(Seller.serializeUser());
+// passport.deserializeUser(Seller.deserializeUser());
 
 // use Routes
+app.use(Login_signup_Route);
 app.use(userRoute);
 app.use(sellerRoute);
-app.use(Login_signup_Route);
 
 // app.get('/test',wrapAsync(async(req,res)=>{
 //   try{
