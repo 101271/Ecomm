@@ -16,7 +16,7 @@ const sellerSchema = new mongoose.Schema({
   },
   userType: { 
     type: String, 
-    default: "Admin"
+    default: "seller"
   },
   // password: {
   //   type: String,

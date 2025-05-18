@@ -8,8 +8,8 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const path = require("path");
 const flash = require("connect-flash");
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 const User = require("./model/user_account");
 const Seller = require("./model/seller_account");
 
@@ -59,13 +59,12 @@ app.use(flash());
 
 // Setting local varibale in response
 
-
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use('user',new LocalStrategy(User.authenticate()));
-passport.use('seller',new LocalStrategy(Seller.authenticate()));
+passport.use("user", new LocalStrategy(User.authenticate()));
+passport.use("seller", new LocalStrategy(Seller.authenticate()));
 
-// correct the order code 
+// correct the order code
 
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
@@ -74,8 +73,27 @@ app.use((req, res, next) => {
   next();
 });
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser((user, done) => {
+  // userType should be a property on your user object, e.g., 'User' or 'Seller'
+  done(null, { id: user.id, type: user.userType });
+});
+
+passport.deserializeUser(async (obj, done) => {
+  try {
+    let user;
+    if (obj.type === "seller") {
+      user = await Seller.findById(obj.id);
+    } else {
+      user = await User.findById(obj.id);
+    }
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 // passport.serializeUser(Seller.serializeUser());
 // passport.deserializeUser(Seller.deserializeUser());
 
@@ -99,17 +117,16 @@ app.use(sellerRoute);
 // }
 // }))
 
-app.get('/logout',(req,res)=>{
-  req.logout((err)=>{
-    if(err){
+app.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
       next(err);
+    } else {
+      req.flash("success", "User Logout Successfully");
+      res.redirect("/");
     }
-    else{
-      req.flash("success","User Logout Successfully")
-      res.redirect('/');
-    }
-  })
-})
+  });
+});
 
 // under construction api handler
 app.get("/working", (req, res) => {
@@ -133,12 +150,10 @@ app.use((err, req, res, next) => {
   // console.log(message.split(":")[0]);
   if (message.split(":")[0] === "product validation failed") {
     message = message.split(":")[2];
-  }
-  else if(message.split(":")[0] ==="user validation failed"){
-    req.flash("error",message.split(":")[2])
-    res.redirect("/signup")
-  }
-  else{
+  } else if (message.split(":")[0] === "user validation failed") {
+    req.flash("error", message.split(":")[2]);
+    res.redirect("/signup");
+  } else {
     res.render("./pages/error.ejs", { message });
   }
 });

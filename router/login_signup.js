@@ -93,8 +93,8 @@ router.post(
     failureFlash: true,
   }),
   async (req, res) => {
-    req.flash("success", "Login Account Successfully");
-    let redirectUrl =  res.locals.returnTo || "/";
+    req.flash("success", "Seller Login Successfully");
+    let redirectUrl =  res.locals.returnTo || "/seller/home";
     res.redirect(redirectUrl);
   }
 );
@@ -107,7 +107,7 @@ router.post(
     failureFlash: true,
   }),
   async (req, res) => {
-    req.flash("success", "Login Account Successfully");
+    req.flash("success", "User Login Successfully");
     let redirectUrl =  res.locals.returnTo || "/";
     res.redirect(redirectUrl);
   }

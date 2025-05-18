@@ -43,3 +43,19 @@ module.exports.saveReturnTo = (req, res, next) => {
   }
   next();
 }
+
+module.exports.is_Seller = (req, res, next) => {
+ if(req.user.userType === "seller"){
+    return next();
+ }  
+  req.flash("error", "please login as a seller");
+  res.redirect("/seller/login");
+}
+
+module.exports.is_User = (req, res, next) => {
+ if(req.user.userType === "seller"){
+    return next();
+ }  
+  req.flash("error", "please login as a seller");
+  res.redirect("/seller/login");
+}
