@@ -14,10 +14,7 @@ const productSchema = new mongoose.Schema({
     },
     url: {
       type: String,
-      set: (v) =>
-        v === ""
-          ? "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1vdW50YWluJTIwaGFsbHxlbnwwfHx8fDE2OTI3NTY5NzE&ixlib=rb-4.0.3&q=80&w=400"
-          : v,
+      set: (v) => v === ""? "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fG1vdW50YWluJTIwaGFsbHxlbnwwfHx8fDE2OTI3NTY5NzE&ixlib=rb-4.0.3&q=80&w=400": v,
     },
   },
 
@@ -50,6 +47,10 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: [1, "Product price is Too low"],
     max: [50000, "Product price is Too high"],
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "seller",
   },
 });
 

@@ -53,9 +53,9 @@ module.exports.is_Seller = (req, res, next) => {
 }
 
 module.exports.is_User = (req, res, next) => {
- if(req.user.userType === "seller"){
+ if(req.user.userType === "User"){
     return next();
  }  
-  req.flash("error", "please login as a seller");
-  res.redirect("/seller/login");
+  req.flash("error", "please login as a User");
+  res.redirect("/login");
 }

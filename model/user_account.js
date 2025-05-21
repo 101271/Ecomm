@@ -14,16 +14,16 @@ const userSchema = new mongoose.Schema({
     minlength: [10, "Email is Too Short"],
     maxlength: [100, "Email is Too long"],
   },
-  userType: { 
-    type: String, 
-    default: "User"
+  userType: {
+    type: String,
+    default: "User",
   },
-  // password: {
-  //   type: String,
-  //   required: true,
-  //   minlength: [8, "Password is Too Short"],
-  //   maxlength: [35, "Password is Too long"],
-  // },
+  Cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cart",
+    },
+  ],
 });
 
 userSchema.plugin(passportLocalMongoose);

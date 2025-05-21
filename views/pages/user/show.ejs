@@ -1,6 +1,7 @@
 <% layout("./layout/boilerplate") %>
 <div class="main_container">
-    <div class="show_card_container">
+  <form action="/add_cart/<%- productData._id %>">
+        <div class="show_card_container">
     <div class="show_card">
 
       <h1 class="show_card_heading"><%= productData.name %></h1>
@@ -13,7 +14,7 @@
 
       <div class="show_card_text">
 
-        <h2 class="show_card_name">Owner by -<span> Maaz</span></h2>
+        <h2 class="show_card_name">Owner by -<span><%- productData.owner.username %></span></h2>
         
         <p class="show_card_description"><b style="color: black; font-weight: 600;">Description</b> - <span><%= productData.description %></span></p>
 
@@ -22,21 +23,25 @@
         <div class="show_card_options">
         <div>
           <label class="Delivary_show_card_1 " for="Delivary_show_card_1">Quantity:-</label>
-        <select name="Delivary_show_card_1" class="show_slide_1" id="cars">
-          <option value="volvo select_show" class="show_slide_1">Volvo</option>
-          <option value="saab" class="show_slide_1">Saab</option>
-          <option value="mercedes" class="show_slide_1">Mercedes</option>
-          <option value="audi" class="show_slide_1">Audi</option>
+        <select name="Quantity" class="show_slide_1" id="cars">
+          <option value="1" class="show_slide_1">1</option>
+          <option value="2" class="show_slide_1">2</option>
+          <option value="3" class="show_slide_1">3</option>
+          <option value="4" class="show_slide_1">4</option>
+          <option value="5" class="show_slide_1">5</option>
+          <option value="6" class="show_slide_1">6</option>
+          <option value="7" class="show_slide_1">7</option>
+          <option value="8" class="show_slide_1">8</option>
         </select>
         </div>
 
         <div>
         <label class="Delivary_show_card_2" for="Delivary_show_card_2">Delivary Options:- </label>
-        <select name="Delivary_show_card_2" class="show_slide_1" id="cars">
-          <option value="volvo" class="show_slide_1">Cash on delivary</option>
-          <option value="saab" class="show_slide_1">Saab</option>
-          <option value="mercedes" class="show_slide_1">Mercedes</option>
-          <option value="audi" class="show_slide_1">Audi</option>
+        <select name="Payment_mode" class="show_slide_1" id="cars">
+          <option value="Cash" class="show_slide_1">Cash on delivary</option>
+          <option value="Upi" class="show_slide_1">Upi</option>
+          <option value="Credit" class="show_slide_1">Credit Card</option>
+          <option value="Debit" class="show_slide_1">Debit Card</option>
         </select>
         </div>       
         </div>
@@ -47,12 +52,16 @@
         </div>
 
         <div class="show_card_buttons">
-          <a href=""></a>
           <button class="add_to_cart button-15">Add to Cart</button>
-          <button class="buy_now button-15">Buy Now</button>
+          
       </div>
     </div>
     <hr>
   </div>
 </div>
+  </form>
+  <a href="/buy">ytguugpoyituoui</a>
+  <a href="/buy">
+            <button class="buy_now button-15">Buy Now</button>
+          </a>
 </div>
