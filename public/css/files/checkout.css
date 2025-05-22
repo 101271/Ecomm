@@ -17,6 +17,7 @@
 .checkout_main{
     position: absolute;
     top: 0px;
+    background-color: white;
 }
 
 .page-title {
@@ -261,12 +262,7 @@
 
 
 .btn-grad {
-  background-image: linear-gradient(
-    to right,
-    #02aab0 0%,
-    #00cdac 51%,
-    #02aab0 100%
-  );
+  background: #3b7fd1;
 }
 
 .btn-grad {
@@ -292,6 +288,7 @@
   font-weight: 900;
   text-decoration: none;
   cursor: pointer;
+  background: var(#4a90e2);
 }
 
 
@@ -303,4 +300,9 @@
 
   margin-top: 11px;
   margin-bottom: 15px;
+
+  & a{
+    text-decoration: none;
+    color: white;
+  }
 }

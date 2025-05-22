@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stylish Payment Page</title>
+  <style>
+    :root {
+      --main-color: #4a90e2;
+      --bg: linear-gradient(145deg, #dbefff, #e7f0ff);
+      --glass: rgba(255, 255, 255, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 2rem;
+      width: 100%;
+      max-width: 850px;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .product-summary {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .product-summary img {
+      width: 100px;
+      border-radius: 10px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 0.3rem;
+    }
+
+    .product-info p {
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .payment-tabs {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .payment-tabs button {
+      flex: 1;
+      background: #fff;
+      border: 2px solid transparent;
+      padding: 0.8rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .payment-tabs button.active {
+      border-color: var(--main-color);
+      color: var(--main-color);
+      background: #e7f2ff;
+    }
+
+    .payment-method {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .payment-method.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: var(--main-color);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .btn {
+      background: var(--main-color);
+      color: white;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      background: #3b7fd1;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .product-summary {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        
+      }
+
+
+      .payment-tabs {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Secure Payment</h2>
+
+   <!-- Payment Tabs -->
+  <div class="payment-tabs">
+    <button class="tab-btn active" data-target="card">Credit/Debit Card</button>
+    <button class="tab-btn" data-target="upi">UPI</button>
+    <button class="tab-btn" data-target="cod">Cash on Delivery</button>
+  </div>
+
+  <form id="paymentForm">
+    <!-- CARD -->
+    <div class="payment-method active" id="card">
+      <div class="form-group">
+        <label>Cardholder Name</label>
+        <input type="text" id="cardName" placeholder="John Doe" />
+      </div>
+      <div class="form-group">
+        <label>Card Number</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Expiry</label>
+          <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" />
+        </div>
+        <div class="form-group">
+          <label>CVV</label>
+          <input type="password" id="cvv" placeholder="123" maxlength="4" />
+        </div>
+      </div>
+    </div>
+
+    <!-- UPI -->
+    <div class="payment-method" id="upi">
+      <div class="form-group">
+        <label>UPI ID</label>
+        <input type="text" id="upiId" placeholder="yourname@upi" />
+      </div>
+    </div>
+
+    <!-- COD -->
+    <div class="payment-method" id="cod">
+      <p><strong>Pay with cash at the time of delivery.</strong></p>
+    </div>
+
+    <button type="submit" class="btn">Pay $<%= totalPrice %></button>
+    <p class="error" id="errorMsg"></p>
+  </form>
+
+  <% Product.forEach((Data)=>{ %>
+    <div class="product-summary">
+      <img src="<%= Data.product.image.url %>" alt="Product">
+      <div class="product-info">
+        <h3><%= Data.product.name %></h3>
+        <p>Qty: <%= Data.Quantity %></p>
+        <p><strong>$<%= Data.product.price %></strong></p>
+      </div>
+    </div>
+  <% })  %>
+
+
+ 
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const methods = document.querySelectorAll('.payment-method');
+  const form = document.getElementById('paymentForm');
+  const errorMsg = document.getElementById('errorMsg');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      methods.forEach(m => m.classList.remove('active'));
+      document.getElementById(tab.dataset.target).classList.add('active');
+    });
+  });
+
+  document.getElementById('cardNumber').addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    e.target.value = value.replace(/(.{4})/g, '$1 ').trim();
+  });
+
+  document.getElementById('expiry').addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length >= 3) {
+      value = value.replace(/^(\d{2})(\d{1,2})$/, '$1/$2');
+    }
+    e.target.value = value;
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorMsg.textContent = '';
+    const activeTab = document.querySelector('.tab-btn.active').dataset.target;
+
+    if (activeTab === 'card') {
+      const name = document.getElementById('cardName').value.trim();
+      const number = document.getElementById('cardNumber').value.replace(/\s/g, '');
+      const expiry = document.getElementById('expiry').value.trim();
+      const cvv = document.getElementById('cvv').value.trim();
+      if (!name || number.length !== 16 || !/^\d{2}\/\d{2}$/.test(expiry) || cvv.length < 3) {
+        errorMsg.textContent = 'Please enter valid card details.';
+        return;
+      }
+    } else if (activeTab === 'upi') {
+      const upiId = document.getElementById('upiId').value.trim();
+      if (!upiId.includes('@')) {
+        errorMsg.textContent = 'Please enter a valid UPI ID.';
+        return;
+      }
+    }
+
+    alert("Payment successful! Thank you for your purchase.");
+    form.reset();
+    document.querySelector('.tab-btn[data-target="card"]').click();
+  });
+</script>
+
+</body>
+</html>

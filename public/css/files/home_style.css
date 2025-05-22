@@ -9,6 +9,33 @@ body {
   background: #f4f4f4;
 }
 
+.place_order{
+  text-decoration: none;
+}
+
+
+  .delivery-options{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    padding: 0.8rem;
+    border-radius: 25px;
+    height: fit-content;
+    border: 1px solid #05010136;
+    background-color: rgba(128, 128, 128, 0.055);
+
+    & .delivery-option{
+      padding: 0px;
+      margin: 0px;
+      margin-right: 18px;
+    }
+  }
+
 /* navbar */
 
 .logo {

@@ -12,6 +12,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./model/user_account");
 const Seller = require("./model/seller_account");
+const { is_User, isLoggedIn } = require("./middleware.js");
+const Cart = require("./model/cart");
 
 // connect to mongoose
 main()
@@ -120,27 +122,7 @@ app.use(sellerRoute);
 // }
 // }))
 
-app.get("/logout", (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      next(err);
-    } else {
-      req.flash("success", "User Logout Successfully");
-      res.redirect("/");
-    }
-  });
-});
 
-// under construction api handler
-app.get("/working", (req, res) => {
-  req.flash("error", "Page is Under Construction");
-  res.redirect("/");
-});
-
-// notification Api Handler
-app.get("/noti", async (req, res) => {
-  res.render("./pages/notifiction.ejs");
-});
 
 // if no Rounts match
 app.all("/*splat", (req, res, next) => {

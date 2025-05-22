@@ -1,67 +1,75 @@
 <% layout("./layout/boilerplate") %>
 <div class="main_container">
   <form action="/add_cart/<%- productData._id %>">
-        <div class="show_card_container">
-    <div class="show_card">
+    <div class="show_card_container">
+      <div class="show_card">
+        <h1 class="show_card_heading"><%= productData.name %></h1>
 
-      <h1 class="show_card_heading"><%= productData.name %></h1>
-
-      <div class="show_card_img">
-        <img
-          src="<%= productData.image.url %>"
-          alt="" />
-      </div>
-
-      <div class="show_card_text">
-
-        <h2 class="show_card_name">Owner by -<span><%- productData.owner.username %></span></h2>
-        
-        <p class="show_card_description"><b style="color: black; font-weight: 600;">Description</b> - <span><%= productData.description %></span></p>
-
-        <p class="show_card_price">M.R.P - <span class="price"><%= productData.price %>$ </span></p>
-
-        <div class="show_card_options">
-        <div>
-          <label class="Delivary_show_card_1 " for="Delivary_show_card_1">Quantity:-</label>
-        <select name="Quantity" class="show_slide_1" id="cars">
-          <option value="1" class="show_slide_1">1</option>
-          <option value="2" class="show_slide_1">2</option>
-          <option value="3" class="show_slide_1">3</option>
-          <option value="4" class="show_slide_1">4</option>
-          <option value="5" class="show_slide_1">5</option>
-          <option value="6" class="show_slide_1">6</option>
-          <option value="7" class="show_slide_1">7</option>
-          <option value="8" class="show_slide_1">8</option>
-        </select>
+        <div class="show_card_img">
+          <img src="<%= productData.image.url %>" alt="" />
         </div>
 
-        <div>
-        <label class="Delivary_show_card_2" for="Delivary_show_card_2">Delivary Options:- </label>
-        <select name="Payment_mode" class="show_slide_1" id="cars">
-          <option value="Cash" class="show_slide_1">Cash on delivary</option>
-          <option value="Upi" class="show_slide_1">Upi</option>
-          <option value="Credit" class="show_slide_1">Credit Card</option>
-          <option value="Debit" class="show_slide_1">Debit Card</option>
-        </select>
-        </div>       
-        </div>
+        <div class="show_card_text">
+          <h2 class="show_card_name">
+            Owner by -<span><%- productData.owner.username %></span>
+          </h2>
 
-        <div class="show_card_rating">
-          <p> Total Ratings :-</p>
-          <img src="/starts2.png" alt="">
-        </div>
+          <p class="show_card_description">
+            <b style="color: black; font-weight: 600">Description</b> -
+            <span><%= productData.description %></span>
+          </p>
 
-        <div class="show_card_buttons">
-          <button class="add_to_cart button-15">Add to Cart</button>
-          
+          <p class="show_card_price">
+            M.R.P - <span class="price"><%= productData.price %>$ </span>
+          </p>
+
+          <div class="show_card_options">
+            <div>
+              <label class="Delivary_show_card_1" for="Delivary_show_card_1"
+                >Quantity:-</label
+              >
+              <select name="Quantity" class="show_slide_1" id="cars">
+                <option value="1" class="show_slide_1">1 Qty</option>
+                <option value="2" class="show_slide_1">2 Qty</option>
+                <option value="3" class="show_slide_1">3 Qty</option>
+                <option value="4" class="show_slide_1">4 Qty</option>
+                <option value="5" class="show_slide_1">5 Qty</option>
+                <option value="6" class="show_slide_1">6 Qty</option>
+                <option value="7" class="show_slide_1">7 Qty</option>
+                <option value="8" class="show_slide_1">8 Qty</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="Delivary_show_card_2" for="Delivary_show_card_2"
+                >Delivary Charges:-
+              </label>
+              <select name="Delivary_chargers" class="show_slide_1" id="cars">
+                <option value="0" class="show_slide_1">
+                  <%= date[0] %> &nbsp; &nbsp; $Free
+                </option>
+                <option value="4.99" class="show_slide_1">
+                  <%= date[1] %> &nbsp; &nbsp; $4.99
+                </option>
+                <option value="9.99" class="show_slide_1">
+                  <%= date[2] %> &nbsp; &nbsp; $9.99
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="show_card_rating">
+            <p>Total Ratings :-</p>
+            <img src="/starts2.png" alt="" />
+          </div>
+
+          <div class="show_card_buttons">
+            <button class="add_to_cart button-15">Add to Cart</button>
+            <button class="buy_now button-15" formaction="/buy">Buy Now</button>
+          </div>
+        </div>
+        <hr />
       </div>
     </div>
-    <hr>
-  </div>
-</div>
   </form>
-  <a href="/buy">ytguugpoyituoui</a>
-  <a href="/buy">
-            <button class="buy_now button-15">Buy Now</button>
-          </a>
 </div>

@@ -9,9 +9,9 @@ const cartSchema = new mongoose.Schema({
         type: String,
         default: 1,
     },
-    Payment_mode: {
+    Delivary_chargers: {
         type: String,
-        enum: ["Cash", "Upi",'Credit',"Debit"],
+        enum: ["0", "4.99",'9.99'],
         default: "Cash",
     },
     });
