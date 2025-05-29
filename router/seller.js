@@ -3,7 +3,8 @@ const router = express.Router({ mergeParams: true });
 const product = require("../model/product.js");
 const wrapAsync = require("../utility/wrapAsync");
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const {storage} = require('../Cloudnary_config.js')
+const upload = multer({ storage })
 const {
   validateProduct,
   isLoggedIn,
@@ -28,11 +29,12 @@ router.post(
   upload.single('image[url]'), // Assuming 'image' is the field name in the form
   wrapAsync(async (req, res, next) => {
     console.log(req.body);
+    console.log(req.file); // This will log the file information if using multer
     let data = new product({
       name: req.body.name,
       image: {
-        filename: req.body.filename,
-        url: req.body.url,
+        filename: req.file.filename,
+        url: req.file.path,
       },
       description: req.body.description,
       add_product_catagory: req.body.add_product_catagory,

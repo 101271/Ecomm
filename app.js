@@ -52,7 +52,7 @@ app.engine("ejs", ejsMate);
 
 // session middleware
 const sessionConfig = {
-  secret: "Mycode",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
