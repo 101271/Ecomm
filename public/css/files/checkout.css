@@ -18,6 +18,8 @@
     position: absolute;
     top: 0px;
     background-color: white;
+  background-image: linear-gradient(145deg, #dbefff, #e7f0ff);
+
 }
 
 .page-title {
@@ -53,6 +55,9 @@
   border: 1px solid rgb(222, 222, 222);
   border-radius: 4px;
   padding: 18px;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .cart-item-container {

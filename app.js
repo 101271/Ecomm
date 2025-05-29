@@ -15,6 +15,7 @@ const Seller = require("./model/seller_account");
 const { is_User, isLoggedIn } = require("./middleware.js");
 const Cart = require("./model/cart");
 
+
 // connect to mongoose
 main()
   .then((res) => console.log("connection successfully"))

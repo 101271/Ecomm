@@ -16,7 +16,7 @@ const loadData = async function(){
    console.log("deleted all data");
    initData.data = initData.data.map((item) => ({
          ...item,
-         owner : '682e1654a9e2d44a0851f84c'
+         owner : '6830b2ecd4b40fbf4be36dd4'
    }));
    await Listing.insertMany(initData.data)
    console.log("data inserted")

@@ -21,7 +21,7 @@ router.get(
       req.flash("error", "Product Not found");
       res.redirect("/");
     } else {
-      res.render("./pages/user/show.ejs", { productData , date: D_date });
+      res.render("./pages/user/show.ejs", { productData, date: D_date });
     }
   })
 );
@@ -59,7 +59,15 @@ router.get("/add_cart/:id", isLoggedIn, is_User, async (req, res, next) => {
 });
 
 router.get("/buy", isLoggedIn, is_User, async (req, res) => {
-  const userData = await User.findById(req.user._id).populate({path: "Cart", populate: {path: "product"}});
+  const userData = await User.findById(req.user._id).populate({
+    path: "Cart",
+    populate: { path: "product" },
+  });
+  if (!userData || userData.Cart.length === 0) {
+    req.flash("error", "Cart is Empty ! Please Add Product to Cart");
+    return res.redirect("/");
+  }
+
   let D_date = Dates();
   let totalPrice = 0;
   let total_items = 0;
@@ -77,19 +85,28 @@ router.get("/buy", isLoggedIn, is_User, async (req, res) => {
     req.flash("error", "User Not found");
     return res.redirect("/");
   }
-  console.log(Data);
-  res.render("./pages/user/Cart.ejs", { Data, date: D_date , totalPrice , total_items , Delivary_chargers });
+  res.render("./pages/user/Cart.ejs", {
+    Data,
+    date: D_date,
+    totalPrice,
+    total_items,
+    Delivary_chargers,
+  });
 });
 
-
 router.get("/payment", isLoggedIn, is_User, async (req, res) => {
-  const userData = await User.findById(req.user._id).populate({path: "Cart", populate: {path: "product"}});
+  const userData = await User.findById(req.user._id).populate({
+    path: "Cart",
+    populate: { path: "product" },
+  });
   let totalPrice = 0;
   userData.Cart.forEach((item) => {
     totalPrice += item.product.price * item.Quantity;
-  }
-  );
-  res.render("./pages/user/payment.ejs", {Product : userData.Cart , totalPrice });
+  });
+  res.render("./pages/user/payment.ejs", {
+    Product: userData.Cart,
+    totalPrice,
+  });
 });
 
 router.get("/logout", (req, res) => {
@@ -114,5 +131,61 @@ router.get("/noti", async (req, res) => {
   res.render("./pages/notifiction.ejs");
 });
 
+router.get("/order", isLoggedIn, is_User, async (req, res) => {
+  let Cart_data = await User.findById(req.user._id).populate({
+    path: "Cart",
+    populate: { path: "product" },
+  });
+  if (Cart_data.Orders.length == 0) {
+    req.flash("error", "You have Noting order yet");
+    return res.redirect("/",);
+  } else {
+    res.render("./pages/user/orders.ejs", { Cart_data });
+  }
+});
+
+router.get("/orders", isLoggedIn, is_User, async (req, res) => {
+  let Cart_data = await User.findById(req.user._id).populate({
+    path: "Cart",
+    populate: { path: "product" },
+  });
+  if (Cart_data.Cart.length === 0) {
+    req.flash("error", "No Items in Cart");
+    return res.redirect("/", 200, { Cart_data });
+  } else {
+    let Date = Dates();
+    let totalPrice = 0;
+    let Total_product = [];
+    Cart_data.Cart.forEach((item) => {
+      let a_date;
+      if (item.Delivary_chargers === "0") {
+        a_date = Date[0];
+      } else if (item.Delivary_chargers === "4.99") {
+        a_date = Date[1];
+      } else if (item.Delivary_chargers === "9.99") {
+        a_date = Date[2];
+      }
+      totalPrice += item.product.price * item.Quantity;
+      Total_product.push({
+        name: item.product.name,
+        Quantity: item.Quantity,
+        Price: item.product.price,
+        Arriving_Date: a_date,
+        Delivary_chargers: item.Delivary_chargers,
+        Image: item.product.image.url,
+      });
+    });
+
+    let Details = {
+      order_date: Date[0],
+      Total: totalPrice,
+      Product_Details: Total_product,
+    };
+    await User.findByIdAndUpdate(req.user._id, { $push: { Orders: Details } });
+    await User.findByIdAndUpdate(req.user._id, { $set: { Cart: [] } });
+    req.flash("success", "Order Placed Successfully");
+    res.redirect("/order");
+  }
+});
 
 module.exports = router;

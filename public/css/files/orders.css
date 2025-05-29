@@ -1,7 +1,7 @@
-.main {
+.main_order {
   max-width: 850px;
-  margin-top: 90px;
-  margin-bottom: 100px;
+  margin-top: 25px;
+  margin-bottom: 80px;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -11,6 +11,11 @@
      without needing a container. */
   margin-left: auto;
   margin-right: auto;
+}
+
+.order-container{
+  background-color: white;
+  border-radius: 8px;
 }
 
 .page-title {
@@ -23,6 +28,9 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 50px;
+  border-radius: 8px;
+
+
 }
 
 .order-header {
@@ -63,6 +71,10 @@
     line-height: 23px;
     padding: 15px;
   }
+  .main_order {
+  margin-left: 0;
+  margin-right: 0;
+}
 
   .order-header-left-section {
     flex-direction: column;
@@ -91,6 +103,7 @@
   border-top: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  background-color: white;
 
   display: grid;
   grid-template-columns: 110px 1fr 220px;
@@ -219,7 +232,7 @@
   }
 }
 
-.btn-grad {
+/* .btn-grad {
   background-image: linear-gradient(
     to right,
     #02aab0 0%,
@@ -245,8 +258,8 @@
 }
 
 .btn-grad:hover {
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: rgb(255, 255, 255);
   font-weight: 700;
   text-decoration: none;
-}
+} */
