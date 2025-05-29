@@ -43,9 +43,9 @@
 }
 
 .delete{
-    background-image: linear-gradient(rgb(226, 63, 63), rgb(180, 4, 4));
+    background-image: linear-gradient(rgb(226, 63, 63), rgb(180, 4, 4)) !important;
 }
 
 .delete:hover{
-    background-image: linear-gradient(rgb(236, 84, 84), rgb(218, 3, 3));
+    background-image: linear-gradient(rgb(236, 84, 84), rgb(218, 3, 3)) !important;
 }

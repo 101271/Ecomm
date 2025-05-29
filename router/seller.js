@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const product = require("../model/product.js");
 const wrapAsync = require("../utility/wrapAsync");
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 const {
   validateProduct,
   isLoggedIn,
@@ -23,7 +25,9 @@ router.post(
   isLoggedIn,
   is_Seller,
   validateProduct,
+  upload.single('image[url]'), // Assuming 'image' is the field name in the form
   wrapAsync(async (req, res, next) => {
+    console.log(req.body);
     let data = new product({
       name: req.body.name,
       image: {

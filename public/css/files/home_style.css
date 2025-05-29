@@ -483,7 +483,7 @@ input,
 textarea {
   width: 100%;
   padding: 0.7rem;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc !important;
   border-radius: 5px;
   font-size: 1rem;
   transition: border 0.3s ease;

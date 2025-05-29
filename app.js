@@ -16,22 +16,26 @@ const { is_User, isLoggedIn } = require("./middleware.js");
 const Cart = require("./model/cart");
 
 
+// require Routes
+const Login = require("./router/login.js");
+const signup= require("./router/signup.js");
+const userRoute = require("./router/user.js");
+const sellerRoute = require("./router/seller.js");
+const wrapAsync = require("./utility/wrapAsync.js");
+
+
+
 // connect to mongoose
 main()
   .then((res) => console.log("connection successfully"))
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/ecomm");
+  await mongoose.connect(process.env.DB_URL);
 }
 
-// require Routes
-const Login = require("./router/login.js");
-const signup= require("./router/signup.js");
-const userRoute = require("./router/user.js");
-const sellerRoute = require("./router/seller.js");
 
-const wrapAsync = require("./utility/wrapAsync.js");
+
 
 // Setting middlewares
 app.use(express.json());
